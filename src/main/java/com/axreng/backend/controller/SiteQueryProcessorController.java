@@ -81,7 +81,6 @@ public class SiteQueryProcessorController {
     public SiteQueryProcessorController() {
 
         logger.info("SiteQueryProcessorController instantiated");
-        logger.info("Starting: {}", Instant.now());
 
         Spark.post("/crawl", (req, res) -> {
             res.type(CONTENT_TYPE_JSON);

@@ -1,0 +1,9 @@
+curl --location 'http://localhost:4567/crawl' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=78E3355FD6A5735E22C9483A97EAA2D1' \
+--data '{
+"keyword": "Linux"
+}'
+
+curl --location 'http://localhost:4567/crawl/TOcR149Z' \
+--header 'Cookie: JSESSIONID=78E3355FD6A5735E22C9483A97EAA2D1'

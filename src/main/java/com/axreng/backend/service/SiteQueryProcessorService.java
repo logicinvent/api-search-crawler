@@ -35,6 +35,7 @@ public class SiteQueryProcessorService {
     private final SearchIdGenerator searchIdGenerator;
     private final UriUtil uriUtil;
     private final ResultFetcherDto result;
+    private Instant startProccesTime;
 
     /**
      * Initializes the site query processor with the specified search term.
@@ -80,8 +81,10 @@ public class SiteQueryProcessorService {
                         logger.error("Error during search execution: {}", ex.getMessage(), ex);
                         result.setStatus(Status.FAILED);
                     } else {
-                        logger.info("Finishing: {}", Instant.now());
                         finalizeSearch();
+                        logger.info("Starting: {}", this.startProccesTime);
+                        logger.info("Finishing: {}", Instant.now());
+
                     }
                 });
 
@@ -93,7 +96,7 @@ public class SiteQueryProcessorService {
      */
     private void executeSearch() {
         logger.info("Starting search process asynchronously...");
-
+        startProccesTime = Instant.now();
         int pagesVisited = 0;
 
         while (!queue.isEmpty() && pagesVisited < MAX_PAGES) {
