@@ -1,6 +1,7 @@
-FROM maven:3.6.3-jdk-14
+FROM maven:3.6.3-openjdk-17
 
-ADD . /usr/src/axreng
-WORKDIR /usr/src/axreng
+WORKDIR /app
+ADD . /app
+
 EXPOSE 4567
-ENTRYPOINT ["mvn", "clean", "verify", "exec:java"]
+ENTRYPOINT ["mvn", "-f", "/app/pom.xml", "clean", "verify", "exec:java"]
